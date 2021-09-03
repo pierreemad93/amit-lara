@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <div class="container">
-    <form method="POST" action="{{route('user.store')}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('user.store')}}"  enctype="multipart/form-data">
         @csrf
         {{-- {{ csrf_field() }} --}}
         <div class="mb-3">
@@ -32,8 +32,17 @@
               <p class="text-danger">{{$message}}</p>
             @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+            <label class="form-label">Select the Role</label>
+            <select class="form-select form-control" name="role">
+                 @foreach($roles as $role)
+                     <option value="{{$role->id}}"> {{$role->role_name}} </option>
+                 @endforeach
+              </select>
+        </div>
+        <button id="save-user" class="btn btn-primary">Submit</button>
         <a class="btn btn-dark" href="{{route('user.index')}}">back</a>
     </form>
 </div>
 @endsection
+

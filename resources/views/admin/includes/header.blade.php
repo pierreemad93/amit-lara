@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html 
+        @if (LaravelLocalization::getCurrentLocale() == 'ar')
+            lang="ar" dir="rtl"
+        @else 
+            lang="en" dir="ltr"   
+        @endif
+>
 
 <head>
     <meta charset="utf-8" />
@@ -16,7 +22,13 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
+    @if (LaravelLocalization::getCurrentLocale() == 'ar')
+    <link href="{{URL::asset('adminpanel/css/material-dashboard-rtl.css')}}" rel="stylesheet" />
+    @else
     <link href="{{URL::asset('adminpanel/css/material-dashboard.css')}}" rel="stylesheet" />
+    @endif
+
+    
 </head>
 
 <body class="dark-edition">

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\RelationController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,12 +15,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware('auth' , 'isAdmin' ,  'localeSessionRedirect', 'localizationRedirect', 'localeViewPath')->prefix(LaravelLocalization::setLocale())->group(function(){
+    Route::prefix('admin')->group(function(){
 
-Route::middleware('auth')->prefix('admin')->group(function(){
-
-    Route::get('/' , [DashboardController::class , 'index'] )
-          ->name('dashboard');
-
-    Route::resource('/user' , UserController::class);
+        Route::get('/' , [DashboardController::class , 'index'])->name('dashboard');
+        
+        Route::get('/user/pdf' , [UserController::class, 'UsersPDF'])->name('userPDF') ;
+        Route::resource('/user' , UserController::class);
+        Route::resource('/role' , RoleController::class); 
+    });
+    
 });
 

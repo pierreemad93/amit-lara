@@ -35,7 +35,6 @@
         </tbody>
     </table>
     <a class="btn btn-primary" href="{{route('user.create')}}">Add user</a>
-    
-      {{$users->links()}}
+    <a class="btn btn-info" href="{{route('userPDF')}}">Export as PDF</a>
 
 @endsection

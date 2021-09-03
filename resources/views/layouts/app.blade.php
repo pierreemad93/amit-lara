@@ -1,5 +1,11 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!doctype html >
+<html  
+    @if (LaravelLocalization::getCurrentLocaleDirection() == 'rtl')
+        lang="ar" dir="rtl"
+    @else 
+        lang="en" dir="ltr"
+    @endif
+>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,12 +23,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet"  >
      <!-- Include this in your blade layout -->
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-    @include('sweet::alert')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -36,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+ 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -48,19 +53,32 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
-                        @else
+                        @else 
+                           @if (LaravelLocalization::getCurrentLocale() == 'en')
+                                <li class="nav-item">
+                                    <a  class="nav-link " href="{{LaravelLocalization::getLocalizedURL('ar')}}">العربيه</a>
+                                </li>      
+                            @else      
+                                <li class="nav-item">
+                                    <a  class="nav-link " href="{{LaravelLocalization::getLocalizedURL('en')}}">English</a>
+                                 </li>                               
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if ( Auth::user()->role_id  !=3)
+                                        <a class="dropdown-item" href="{{ route('dashboard') }}">
+                                            Dashboard
+                                        </a>  
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

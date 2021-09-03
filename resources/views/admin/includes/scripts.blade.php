@@ -3,7 +3,7 @@
 <script src="{{URL::asset('adminpanel//js/core/jquery.min.js')}}"></script>
 <script src="{{URL::asset('adminpanel/js/core/popper.min.js')}}"></script>
 <script src="{{URL::asset('adminpanel/js/core/bootstrap-material-design.min.js')}}"></script>
-<script src="https://unpkg.com/default-passive-events"></script>
+{{-- <script src="https://unpkg.com/default-passive-events"></script>
 <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -188,12 +188,12 @@
         });
     });
 
-</script>
+</script> --}}
 <script>
     $(document).ready(function () {
         // Javascript method's body can be found in assets/js/demos.js
         md.initDashboardPageCharts();
 
     });
-
 </script>
+@yield('script')

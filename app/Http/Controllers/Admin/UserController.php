@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Admin\Triat\PDFGenerator;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -14,6 +16,7 @@ use SweetAlert;
 
 class UserController extends Controller
 {
+    use PDFGenerator;
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +26,7 @@ class UserController extends Controller
     {
         //$users = SELECT * FROM users 
         // $users = User::all();
-            $users= User::paginate(5);
+            $users= User::all();
         return view('admin.users.all' , compact('users'));
     }
 
@@ -35,7 +38,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create' , compact('roles'));
 
     }
 
@@ -53,7 +57,8 @@ class UserController extends Controller
             'name'=>['required', 'string' , 'min:4' , 'max:25'] , 
             'email'=>['required','unique:users' , 'email'] , 
             'password'=> ['required'] , 
-            'image'  =>['required'  , 'mimes:jpg,bmp,png,jpeg'] , 
+            'image'  =>['required'  , 'mimes:jpg,bmp,png,jpeg'] ,
+            'role' => ['required'] ,
         ];
         $validator = Validator::make($data,$rules);
         if($validator->fails()){
@@ -70,6 +75,7 @@ class UserController extends Controller
             'email' => $request->email ,
             'password'=> Hash::make($request->password) , 
             'image'  => $picName ,
+            'role_id' => $request->role
         ]);
         return redirect()->back();
     }
