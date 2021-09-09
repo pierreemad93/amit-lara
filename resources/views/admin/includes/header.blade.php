@@ -27,8 +27,9 @@
     @else
     <link href="{{URL::asset('adminpanel/css/material-dashboard.css')}}" rel="stylesheet" />
     @endif
-
-    
+     <!-- Include this in your blade layout -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body class="dark-edition">
+    @include('sweet::alert')

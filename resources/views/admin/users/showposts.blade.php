@@ -12,14 +12,13 @@
             <th>action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody> 
         @foreach ($posts as $post )
         <tr>
             <th><img src="{{URL::asset('adminpanel/img')}}/{{$post->image}}" style="height: 10vh"></th>
             <th>{{$post->title}}</th>
             <td>{{$post->created_at}}</td>
             <td>
-            
                 <div class="d-flex">
                     <a class="btn btn-info" href="{{route('post.show' , $post->id)}}">Show</a>
                     <a class="btn btn-warning" href="{{route('post.edit' , $post->id)}}">edit</a>
@@ -36,5 +35,5 @@
         @endforeach
     </tbody>
 </table>
-<a class="btn btn-primary" href="{{route('post.create')}}">Add Post</a>
+<a class="btn btn-info" href="{{route('user.index')}}">Back</a>
 @endsection

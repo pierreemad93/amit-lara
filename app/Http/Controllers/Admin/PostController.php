@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use SweetAlert;
 
 class PostController extends Controller
 {
@@ -67,6 +69,7 @@ class PostController extends Controller
             'image'  => $picName ,
             'user_id' => $request->user_id
         ]);
+        // SweetAlert::message('Robots are working!');
         return redirect()->back();
     }
 
