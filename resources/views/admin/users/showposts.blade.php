@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 @section('content')
+@section('title') 
+       {{$user->name}}  Posts
+@endsection
 <table class="table">
     <thead>
         <tr>
             <th>profile pic</th>
             <th>Title</th>
-            <th>Author</th>
             <th>created at</th>
             <th>action</th>
         </tr>
@@ -15,7 +17,6 @@
         <tr>
             <th><img src="{{URL::asset('adminpanel/img')}}/{{$post->image}}" style="height: 10vh"></th>
             <th>{{$post->title}}</th>
-            <td>{{$post->author}}</td>
             <td>{{$post->created_at}}</td>
             <td>
             

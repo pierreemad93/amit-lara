@@ -20,6 +20,7 @@
                 <td>
                     <div class="d-flex">
                         <a class="btn btn-info" href="{{route('user.show' , $user->id)}}">Show</a>
+                        <a class="btn btn-info" href="{{route('user.post' , $user->id)}}">Posts</a>
                         <a class="btn btn-warning" href="{{route('user.edit' , $user->id)}}">edit</a>
                        {{--Start delete button --}}
                         <form method="POST" action="{{route('user.destroy' , $user->id)}}">

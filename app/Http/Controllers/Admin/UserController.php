@@ -149,4 +149,9 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function showPosts($id){
+        $user = User::findOrFail($id);
+        $posts = User::findOrFail($id)->posts;
+        return view('admin.users.showposts' , compact('posts' , 'user'));
+    }
 }

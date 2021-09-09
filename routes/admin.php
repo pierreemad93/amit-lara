@@ -24,6 +24,7 @@ Route::middleware('auth' , 'isAdmin' ,  'localeSessionRedirect', 'localizationRe
             Route::get('/user/pdf' , [UserController::class, 'UsersPDF'])->name('userPDF') ;
             Route::get('/user/import', [UserController::class, 'importView'])->name('importview');
             Route::get('/user/export', [UserController::class, 'export'])->name('user.export');
+            Route::get('/user/posts/{id}' , [UserController::class , 'showPosts'])->name('user.post');
             Route::post('/user/import', [UserController::class, 'import'])->name('user.import');
             Route::resource('/user' , UserController::class);
         //end userprocess 
