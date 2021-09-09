@@ -18,10 +18,27 @@ class UserSeeder extends Seeder
     {
         //
         DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
-             'role_id' => rand(1,3),
+            array(
+                   'name'=> 'admin' ,  
+                   'email' => 'admin@info.com' , 
+                   'password' => Hash::make('password') ,
+                   'role_id' => '1' , 
+                   'image' => 'seed-image.jpg' ,
+                ),
+                array(
+                    'name'=> 'Moderator' ,  
+                    'email' => 'moderator@info.com' , 
+                    'password' => Hash::make('password') , 
+                    'role_id' => '2' , 
+                    'image' => 'seed-image.jpg' ,
+                 ),
+                 array(
+                    'name'=> 'amit' ,  
+                    'email' => 'amit@info.com' , 
+                    'password' => Hash::make('password') , 
+                    'role_id' => '3' , 
+                    'image' => 'seed-image.jpg' ,
+                 ),
         ]);
     }
 }

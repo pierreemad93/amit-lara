@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -14,7 +18,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // 
+        $posts = Post::all();
+
+        return view('admin.posts.all' ,  compact('posts'));
     }
 
     /**
@@ -25,6 +32,8 @@ class PostController extends Controller
     public function create()
     {
         //
+        
+        return view('admin.posts.create');
     }
 
     /**
@@ -35,7 +44,30 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
+        $data = $request->all();
+        $rules = [ 
+            'title' => ['required' , 'unique:posts' , 'min:4' , 'max:25'],
+            'desc' => ['required'] , 
+            'image'  =>['required'  , 'mimes:jpg,bmp,png,jpeg'] ,
+            'author' =>[Rule::in(Auth::user()->name)],
+        ];
+        $validator = Validator::make($data,$rules);
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($data);
+        }
+
+        $profilePicture =$request->file('image');
+        $picName = time()."_".$profilePicture->getClientOriginalName();
+        $profilePicture->move('adminpanel\img' , $picName);
+        Post::create([
+            'title' =>  $request->title , 
+            'desc' =>   $request->desc,
+            'author' => $request->author , 
+            'image'  => $picName ,
+            'user_id' => $request->user_id
+        ]);
+        return redirect()->back();
     }
 
     /**
