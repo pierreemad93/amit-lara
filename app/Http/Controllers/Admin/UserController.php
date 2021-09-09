@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Triat\ExcelGenerator;
 use App\Http\Controllers\Admin\Triat\PDFGenerator;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,7 @@ use SweetAlert;
 
 class UserController extends Controller
 {
-    use PDFGenerator;
+    use PDFGenerator , ExcelGenerator;
     /**
      * Display a listing of the resource.
      *

@@ -19,9 +19,15 @@ Route::middleware('auth' , 'isAdmin' ,  'localeSessionRedirect', 'localizationRe
     Route::prefix('admin')->group(function(){
 
         Route::get('/' , [DashboardController::class , 'index'])->name('dashboard');
-        
-        Route::get('/user/pdf' , [UserController::class, 'UsersPDF'])->name('userPDF') ;
-        Route::resource('/user' , UserController::class);
+        //user Process
+            Route::get('/user/pdf' , [UserController::class, 'UsersPDF'])->name('userPDF') ;
+            Route::get('/user/import', [UserController::class, 'importView'])->name('importview');
+            Route::get('/user/export', [UserController::class, 'export'])->name('user.export');
+            Route::post('/user/import', [UserController::class, 'import'])->name('user.import');
+            Route::resource('/user' , UserController::class);
+        //end userprocess 
+
+
         Route::resource('/role' , RoleController::class); 
     });
     

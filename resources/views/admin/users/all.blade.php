@@ -36,5 +36,7 @@
     </table>
     <a class="btn btn-primary" href="{{route('user.create')}}">Add user</a>
     <a class="btn btn-info" href="{{route('userPDF')}}">Export as PDF</a>
+    <a class="btn btn-success" href="{{route('user.export')}}">Export as CSV</a>
+    <a class="btn btn-success" href="{{route('importview')}}">Import User</a>
 
 @endsection
