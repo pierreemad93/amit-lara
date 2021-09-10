@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use SweetAlert;
 
 class PostController extends Controller
 {
@@ -69,7 +68,6 @@ class PostController extends Controller
             'image'  => $picName ,
             'user_id' => $request->user_id
         ]);
-        // SweetAlert::message('Robots are working!');
         return redirect()->back();
     }
 
@@ -82,6 +80,8 @@ class PostController extends Controller
     public function show($id)
     {
         //
+        $post = Post::findOrFail($id);
+        return view('admin.posts.show' , compact('post'));
     }
 
     /**

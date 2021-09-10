@@ -21,7 +21,7 @@
             </li>
          
             <li class="nav-item ">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="{{route('post.index')}}">
                     <i class="material-icons">library_books</i>
                     <p>Posts</p>
                 </a>
