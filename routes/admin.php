@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PostCommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ Route::middleware('auth' , 'isAdmin' ,  'localeSessionRedirect', 'localizationRe
             Route::resource('/user' , UserController::class);
         //end userprocess 
         Route::resource('/role' , RoleController::class); 
+        Route::resource('/comment' , PostCommentController::class);
         Route::resource('/post' , PostController::class);
     });
     
