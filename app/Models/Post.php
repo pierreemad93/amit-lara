@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
-   protected $fillable = ['title', 'desc' , 'author' , 'image' , 'user_id'];
+    use HasFactory; 
+    protected $fillable = [
+        'title' , 'desc' , 'image' , 'author' , 'user_id'  
+    ]; 
 
-
-   public function comments(){
-       return $this->hasMany(PostComment::class , 'post_id' , 'id');
-   }
+    public function comments(){
+        return $this->hasMany(PostComment::class , 'post_id' , 'id');
+    }
 }

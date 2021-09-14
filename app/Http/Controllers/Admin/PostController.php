@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\PostComment;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -83,7 +84,8 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post_id = $id ;
         $comments  = Post::findOrFail($id)->comments ;
-        return view('admin.posts.show' , compact('post' , 'post_id' , 'comments'));
+        $replies = PostComment::find($id)->replies;
+        return view('admin.posts.show' , compact('post' , 'post_id' , 'comments' , 'replies'));
     }
 
     /**

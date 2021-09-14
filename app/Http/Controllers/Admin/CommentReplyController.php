@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\PostComment;
+use App\Models\CommentReply;
 use Illuminate\Http\Request;
 
-class PostCommentController extends Controller
+class CommentReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class PostCommentController extends Controller
      */
     public function index()
     {
-        // 
-        $comments = PostComment::all();
-        return view('admin.comments.all' , compact('comments'));
+        //
     }
 
     /**
@@ -38,12 +36,12 @@ class PostCommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        PostComment::create([
-            'comment' => $request->comment ,
-            'commenter'=> $request->commenter , 
-            'post_id' => $request->post_id , 
-            'user_id' => $request->user_id 
+        // 
+        CommentReply::create([
+            'reply'  =>  $request->reply, 
+            'replier' =>  $request->replier,
+            'comment_id' => $request->comment_id , 
+            'post_id' =>  $request->post_id ,
         ]);
 
         return redirect()->back();

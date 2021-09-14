@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostComment extends Model
 {
-    use HasFactory; 
-    protected $table = 'comments';
+    use HasFactory;
+    protected $table= 'comment';
     protected $fillable = [
-        'comment' , 'commenter' , 'user_id' , 'post_id' 
-    ];
+          'comment' ,
+          'commenter' , 
+          'post_id' , 
+          'user_id'
+    ]; 
 
 
+    public function replies(){
+        return $this->hasMany(CommentReply::class , 'comment_id' , 'id');
+    }
 }

@@ -25,13 +25,14 @@ Route::middleware('auth' , 'isAdmin' ,  'localeSessionRedirect', 'localizationRe
             Route::get('/user/pdf' , [UserController::class, 'UsersPDF'])->name('userPDF') ;
             Route::get('/user/import', [UserController::class, 'importView'])->name('importview');
             Route::get('/user/export', [UserController::class, 'export'])->name('user.export');
-            Route::get('/user/posts/{id}' , [UserController::class , 'showPosts'])->name('user.post');
+            Route::get('/user/{id}/posts' , [UserController::class , 'showPosts'])->name('user.post');
             Route::post('/user/import', [UserController::class, 'import'])->name('user.import');
             Route::resource('/user' , UserController::class);
         //end userprocess 
         Route::resource('/role' , RoleController::class); 
         Route::resource('/comment' , PostCommentController::class);
         Route::resource('/post' , PostController::class);
+        Route::resource('/post/reply' , CommentReplyController::class);
     });
     
 });
