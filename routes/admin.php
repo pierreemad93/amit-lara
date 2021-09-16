@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostCommentController;
+use App\Http\Controllers\Admin\CommentReplyController;
 
 /*
 |--------------------------------------------------------------------------

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Models\CommentReply;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -83,7 +84,7 @@ class PostController extends Controller
         //
         $post = Post::findOrFail($id);
         $post_id = $id ;
-        $comments  = Post::findOrFail($id)->comments ;
+        $comments  = Post::findOrFail($id)->comments;
         $replies = PostComment::find($id)->replies;
         return view('admin.posts.show' , compact('post' , 'post_id' , 'comments' , 'replies'));
     }
